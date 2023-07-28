@@ -1,7 +1,17 @@
 const router = require ("express").Router();
 const pool = require("../db"); 
 const bcrypt= require('bcrypt');
-const jwtGenerator = require("../utils/jwtGenerator")
+const jwt = require ("jsonwebtoken");
+
+const jwtGenerator=(user_id)=>{
+    const payload ={
+        user:user_id
+    }
+
+    jwt.sign(payload, process.env.jwtSecret,{expiresIn:"1h"})
+}
+
+
 
 const register= async(req,res)=>{
     try {
@@ -14,8 +24,6 @@ const register= async(req,res)=>{
         if (user.rows.length !== 0) {
             return res.status(401).send("User already exists");
         }
-
-
         // Bcrypt the password
         const saltRound = 10;
         const salt = await bcrypt.genSalt(saltRound);
@@ -26,12 +34,16 @@ const register= async(req,res)=>{
             [name, email, hashedPassword]
         );
 
-        res.json(newUser.rows[0]);
+              // Store the new user inside the database
 
-         // Store the new user inside the database
-         const token = jwtGenerator(newUser.rows[0].user_id);
-         console.log(token);
-         res.json({token})
+                        const userId = newUser.rows[0].user_id;
+            
+                        // Generate JWT token using the userId
+                        const token = jwtGenerator(userId);
+                        console.log(token);
+                
+                        res.json({ token });
+                    
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Internal server error" });
@@ -39,4 +51,4 @@ const register= async(req,res)=>{
 }
 
 
-module.exports={register}
+module.exports={jwtGenerator,register}
