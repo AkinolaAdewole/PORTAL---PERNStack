@@ -18,6 +18,7 @@ const { register} = require('./routes/AuthControllers.js');
 App.post('/register', register);
 
 
-App.listen(5005, () => {
-    console.log("server is up at port 5001");
+const port = 5018
+App.listen(port, () => {
+    console.log(`server is running at port ${port}`);
 });

@@ -28,15 +28,19 @@ const register= async(req,res)=>{
             return res.status(401).send("User already exists");
 
         } 
-        else if(newUser.rows.length === 0){
-            console.log();
+        // else if(newUser.rows.length === 0){
+        //     console.log();
 
-            return res.status(500).json({ error: "User registration failed. Unable to retrieve user_id." });
-        } 
+        //     return res.status(500).json({ error: "User registration failed. Unable to retrieve user_id." });
+        // } 
         else{
 
             // Check the value of newUser.rows
-        console.log(newUser.rows); 
+            result.rows.forEach((user) => {
+                const user_id = user.user_id;
+                console.log('User ID:', user_id);
+              }); 
+
             const token = jwtGenerator(newUser.rows[0].user_id);
             console.log(token);
             res.json({ token });

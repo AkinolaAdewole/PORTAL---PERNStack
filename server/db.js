@@ -8,7 +8,7 @@ pool.query('SELECT * FROM users', (err, result) => {
     if (err) {
       console.error('Error executing the query:', err);
     } else {
-      console.log('Query result:', result.rows);
+    //   console.log('queryResult:', result.rows);
     }
   });
 
