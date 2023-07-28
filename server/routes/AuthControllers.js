@@ -46,10 +46,19 @@ const login=async(req,res)=>{
         //check if user doesn't exist
         const user = await pool.query("SELECT * FROM users WHERE user_email = $1", [email]);
         if(user.rows.length===0){
-            return res.status(401).send("Password or Email doesn't exist")
+            return res.status(401).send("Email is incorrect");
         }
         // check if incoming password is the same in the database
-        const validPassword=bcrypt.compare(password, user.rows[0].user_password)
+        const validPassword= await bcrypt.compare(password, user.rows[0].user_password);
+        console.log(validPassword); 
+
+        if(!validPassword){
+            return res.status(401).send("Password is incorrect")
+        }
+
+        // Generate jwt token
+        const token = jwtGenerator(user.rows[0].user_id);
+        res.json({ token })
     } catch (error) {
         
     }
