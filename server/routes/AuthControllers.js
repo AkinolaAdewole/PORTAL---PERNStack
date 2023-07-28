@@ -29,7 +29,9 @@ const register= async(req,res)=>{
         res.json(newUser.rows[0]);
 
          // Store the new user inside the database
-         const token = jwtGenerator(newUser.rows[0].user_id)
+         const token = jwtGenerator(newUser.rows[0].user_id);
+         console.log(token);
+         res.json({token})
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Internal server error" });
