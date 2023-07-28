@@ -8,7 +8,8 @@ module.exports = async(req,res,next)=>{
             return res.status(403).json("You are authorised");
         }
 
-        const payload
+        const payload=jwt.verify(jwtToken, process.env.jetSecret);
+        req.user.payload.user;
     } catch (error) {
         console.error(error.message);
         return res.status(403).json("You are not authorised");
