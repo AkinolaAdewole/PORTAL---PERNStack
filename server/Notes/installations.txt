@@ -1,0 +1,51 @@
+nodemon
+express
+cors
+pg
+jsonwebtoken
+bcrypt
+
+
+// postgresql extension
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+
+
+
+
+
+
+
+
+
+
+
+node-postgres (or simply "pg") allows you to perform various database operations, such as executing SQL queries, 
+managing transactions, and handling result sets. It provides a straightforward and efficient interface for connecting to and 
+working with PostgreSQL databases in a Node.js environment.
+
+CORS stands for Cross-Origin Resource Sharing, and it is a security feature implemented by web browsers to restrict web pages from 
+making requests to a different domain (origin) than the one from which the web page was served. This security measure is designed to 
+prevent potential cross-origin attacks.
+
+JSONWebToken is a popular JavaScript library used for generating and verifying JSON Web Tokens (JWTs). 
+JWT is a compact and self-contained way of representing information between parties as a JSON object. It is commonly used for 
+authentication and data exchange in web applications and APIs.
+
+JSON Web Tokens consist of three parts:
+
+Header: Contains information about the algorithm used for signing the token and the token type.
+
+Payload: Contains the claims (data) about the user or any other information you want to include in the token.
+
+Signature: Created by encoding the header and payload along with a secret key using the specified algorithm.
+
+
+
+
+bcrypt is a widely used JavaScript library for hashing passwords. It provides a secure way to store passwords by using a one-way 
+cryptographic hash function, which makes it difficult for attackers to reverse engineer the original password from the stored hash.
+
+When users create an account or update their passwords in my application, I should never store their passwords as plaintext. 
+Instead, I should hash the passwords using a strong cryptographic hashing algorithm like bcrypt and store the hashed values in the 
+database. When users log in, I can hash the provided password and compare it with the stored hash to verify their identity.
