@@ -11,11 +11,12 @@ App.use(cors());
 
 // Route for authentication
 // Import the registerUser function from authController.js
-const { register} = require('./routes/AuthControllers.js');
+const { register, login} = require('./routes/AuthControllers.js');
 
 
 // Route for user registration
 App.post('/register', register);
+App.post('/login', login)
 
 
 const port = 5018
