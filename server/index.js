@@ -18,6 +18,6 @@ const { register} = require('./routes/AuthControllers.js');
 App.post('/register', register);
 
 
-App.listen(5001, () => {
+App.listen(5005, () => {
     console.log("server is up at port 5001");
 });
