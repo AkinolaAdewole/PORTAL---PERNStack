@@ -44,7 +44,28 @@ const Login = ({setAuth}) => {
   return (
     <>
        <div>
-        <button onClick={()=>setAuth(true)}>Auth</button>
+            <div>
+                <div className='col-9'>
+                     <h2 className='text-center'>Login</h2>
+                    <form action="" onSubmit={submitForm}>
+                        <input type="text" name='email' 
+                            placeholder='Email'
+                            className='form-control my-3' 
+                            value={email}
+                            onChange={(e)=>onChange(e)}/>
+
+                        <input type="text" name='password' 
+                           placeholder='password'
+                            className='form-control my-3' 
+                            value={password}
+                            onChange={(e)=>onChange(e)} 
+                            />
+
+
+                        <button onClick={()=>setAuth(true)}>Auth</button>
+                    </form>
+                </div>
+            </div>
        </div>
     </>
   )
