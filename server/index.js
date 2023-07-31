@@ -33,7 +33,8 @@ App.get('/tokenverification', authorization, TokenVerification);
 App.get('/dashboard', authorization,Dashboard);
 
 
-const port = 5018
+const port = 5020
 App.listen(port, () => {
     console.log(`server is running at port ${port}`);
 });
+ 

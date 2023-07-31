@@ -7,7 +7,7 @@ const validInformation=(req,res,next)=>{
     }
 
     if(req.path === "/register"){
-        console.log(!email.length);
+        // console.log(!email.length);
 
         // email, name and password are not empty value
         if(![email,firstname,lastname,password].every(Boolean)){ 
@@ -24,7 +24,7 @@ const validInformation=(req,res,next)=>{
             return res.status(401).json("Invalid Email");
         }
     }
-
+ 
     next();
 }
 

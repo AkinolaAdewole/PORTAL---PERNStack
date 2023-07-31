@@ -14,22 +14,47 @@ const SignUp = () => {
         setInputs({...inputs, [e.target.name]:e.target.value});
     };
 
-    const submit =async(e)=>{
+    // const submit =async(e)=>{
+    //     e.preventDefault();
+    //     try {
+    //         const body ={firstname, lastname, email, password }
+    //         const response = await fetch("http://localhost:5020/register",{
+    //             method:"POST",
+    //             headers:{"Content-Type":"application/json"},
+    //             body:JSON.stringify(body)
+    //         });
+    //         const parseRes=await response.json();
+    //         console.log(parseRes);
+
+    //     } catch (err) {
+    //         console.error(err.message);
+    //     }
+    // }
+
+    const submit = async (e) => {
         e.preventDefault();
         try {
-            const body ={firstname, lastname, email, password }
-            const response = await fetch("http://localhost:5018/register",{
-                method:"POST",
-                headers:{"Content-Type":"application/json"},
-                body:JSON.stringify(body)
-            });
-            const parseRes=await response.json();
+          const body = { firstname, lastname, email, password };
+          const response = await fetch("http://localhost:5020/register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body),
+          });
+      
+          if (!response.ok) {
+            // Handle the case when the response status is not 2xx (e.g., 401, 500, etc.)
+            const errorMessage = await response.text();
+            console.error(`Error: ${response.status} - ${errorMessage}`);
+          } else {
+            // Registration successful
+            const parseRes = await response.json();
             console.log(parseRes);
-            
+          }
         } catch (err) {
-            console.error(err.message);
+          console.error(`Error: ${err.message}`);
         }
-    }
+      };
+      
 
   return (
     <>
