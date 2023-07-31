@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { toast } from 'react-toastify'
 
-const Dashboard = () => {
+const Dashboard = ({setAuth}) => {
     const [name,setName]= useState("");
+
     const getProfile=async()=>{
         try {
             const res = await fetch ("http://localhost:5000/dashboard",{
@@ -11,6 +12,16 @@ const Dashboard = () => {
             });
             const parseData = await res.json();
             setName(parseData.user_name);
+        } catch (err) {
+            console.error(err.message);
+        }
+    }
+
+    const logout=async(e)=>{
+        e.preventDefault();
+        try {
+            localStorage.removeItem("token");
+            setAuth(false);
         } catch (err) {
             console.error(err.message);
         }
