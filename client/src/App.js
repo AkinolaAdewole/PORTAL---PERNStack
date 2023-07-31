@@ -14,11 +14,11 @@ function App() {
     <div className='container'>
       <Router>
         <Routes>
-          <Route path='/' element={!isAuthenticated ? <SignUp /> : <Navigate to='/login' />} />
+          <Route path='/' element={!isAuthenticated ? <SignUp  setAuth={setAuth}/> : <Navigate to='/login' />} />
 
-          <Route path='/login' element={!isAuthenticated ? <Login /> : <Navigate to='/dashboard' />} />
+          <Route path='/login' element={!isAuthenticated ? <Login setAuth={setAuth}/> : <Navigate to='/dashboard' />} />
 
-          <Route path='/dashboard' element={isAuthenticated ? <Dashboard /> : <Navigate to='/login' />} />
+          <Route path='/dashboard' element={isAuthenticated ? <Dashboard setAuth={setAuth}/> : <Navigate to='/login' />} />
         </Routes>
       </Router>
     </div>
