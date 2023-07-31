@@ -1,29 +1,25 @@
-import { BrowserRouter as Router,Route, Routes, Navigate} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import SignUp from './components/SignUp';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import { useState } from 'react';
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const setAuth=(boolean)=>{
+    setIsAuthenticated(boolean);
+  }
 
-  const [isAuthenticated, setIsAuthenticated]= useState(false); 
   return (
     <div className='container'>
       <Router>
-         <Routes>
+        <Routes>
+          <Route path='/' element={!isAuthenticated ? <SignUp /> : <Navigate to='/login' />} />
 
-           <Route path='/' element={<SignUp />}/>
-                  <Route
-              path="/login"
-              element={
-                !isAuthenticated ? (
-                  <Login />
-                ) : (
-                 < Navigate to='/dashboard' replace/>
-              )}/>
+          <Route path='/login' element={!isAuthenticated ? <Login /> : <Navigate to='/dashboard' />} />
 
-           <Route path='/dashboard' element={<Dashboard />} />
-         </Routes>
+          <Route path='/dashboard' element={isAuthenticated ? <Dashboard /> : <Navigate to='/login' />} />
+        </Routes>
       </Router>
     </div>
   );
