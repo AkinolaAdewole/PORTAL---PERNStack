@@ -23,9 +23,11 @@ const Login = ({setAuth}) => {
                     headers:{
                         "content-type":"application/json"
                     },
-                    body:JSON.stringify(body);
+                    body:JSON.stringify(body)
                 }
-            )
+            );
+
+            const parseRes=await response.json();
         } catch (err) {
             console.error(err);
         }
