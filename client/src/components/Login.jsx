@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 const Login = ({setAuth}) => {
     const [inputs, setInputs]=useState({
