@@ -17,7 +17,7 @@ import authorization from "./middleware/authorization.js"
 import { register, login, TokenVerification} from './routes/AuthControllers.js';
 
 // Import Dashboard 
-const Dashboard = require('./routes/Dashboard');
+import Dashboard from './routes/Dashboard.js';
 
 
 

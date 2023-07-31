@@ -1,6 +1,6 @@
 import pkg from 'pg';
 
-const {Pool}=pkg;
+const {Pool} = pkg;
 
 const pool= new Pool();
 
@@ -13,4 +13,4 @@ pool.query('SELECT * FROM users', (err, result) => {
     }
   });
 
-  export default pool;
+  export default pool
