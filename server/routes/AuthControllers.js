@@ -5,7 +5,7 @@ import  jwtGenerator from '../utils/jwtGenerator.js';
 
 export const register = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { firstname, lastname, email, password } = req.body; 
 
     // Check if user exists
     const user = await executeQuery("SELECT * FROM users WHERE user_email = $1", [email]);
@@ -20,7 +20,7 @@ export const register = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     const newUser = await executeQuery(
-      "INSERT INTO users (user_firstname, user_lastname, user_email, user_password) VALUES ($1, $2, $3) RETURNING user_id",
+      "INSERT INTO users (user_firstname, user_lastname, user_email, user_password) VALUES ($1, $2, $3, $4) RETURNING user_id", 
       [firstname, lastname, email, hashedPassword]
     );
 
@@ -29,7 +29,7 @@ export const register = async (req, res) => {
       return res.status(500).json({ error: "User registration failed. Unable to retrieve user_id." });
     }
 
-    const token = jwtGenerator(newUser.rows[0].user_id);
+    const token = jwtGenerator(newUser.user_id); 
 
     res.json({ token });
 

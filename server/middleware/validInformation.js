@@ -1,6 +1,6 @@
 const validInformation=(req,res,next)=>{
-    const {email, name, password}=req.body;
-
+    const {email, firstname,lastname, password}=req.body;
+ 
     // Check if Email is valid
     const validEmail=(userEmail)=>{
         return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(userEmail);
@@ -10,7 +10,7 @@ const validInformation=(req,res,next)=>{
         console.log(!email.length);
 
         // email, name and password are not empty value
-        if(![email,name,password].every(Boolean)){
+        if(![email,firstname,lastname,password].every(Boolean)){ 
             return res.status(401).json("Missing Credentials");
         } else if(!validEmail(email)){
             return res.status(401).json("Invalid Email")

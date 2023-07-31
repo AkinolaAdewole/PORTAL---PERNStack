@@ -5,7 +5,7 @@ dotenv.config();
 import express from 'express'
 import cors from 'cors';
 const App = express();
-
+ 
 // Middleware
 App.use(express.json());
 App.use(cors());
