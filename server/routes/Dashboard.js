@@ -1,9 +1,11 @@
-import  pool from "../db.js"; 
+import  executeQuery from "../db.js"; 
 
 const Dashboard=async(req,res)=>{
     try {
         // req.user has the payload
-        res.json(req.user);
+        const user = executeQuery("SELECT user_name FROM users WHERE user_id=$1",[req.user]);
+        res.status(200).json(user[0]);
+        // res.json(user[0]);
     } catch (err) {
         console.error(err);
         res.status(500).json('server error');
