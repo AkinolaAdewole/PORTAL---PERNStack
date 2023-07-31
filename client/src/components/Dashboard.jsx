@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 
 const Dashboard = ({setAuth}) => {
@@ -22,12 +22,24 @@ const Dashboard = ({setAuth}) => {
         try {
             localStorage.removeItem("token");
             setAuth(false);
+            toast.success("Lofout successfully");
         } catch (err) {
             console.error(err.message);
         }
-    }
+    };
+
+    useEffect(()=>{
+        getProfile();
+    },[]);
   return (
-    <div>Dashboard</div>
+    <>
+       <h1 className='mt-5'></h1>
+       <h2>Welcome {name}</h2>
+
+            <button onClick={(e)=>logout(e)} className='btn btn-primary'>
+                Logout
+            </button>
+    </>
   )
 }
 
