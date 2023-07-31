@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { toast, ToastContainer } from 'react-toastify';
 
 const Login = ({setAuth}) => {
     const [inputs, setInputs]=useState({
@@ -28,6 +29,14 @@ const Login = ({setAuth}) => {
             );
 
             const parseRes=await response.json();
+            if(parseRes.jwtToken){
+                localStorage.setItem("token",parseRes.jwtToken);
+                setAuth(true);
+                toast.success("Logged in successfuly");
+            } else{
+                setAuth(false);
+                toast.error(parseRes);
+            }
         } catch (err) {
             console.error(err);
         }
