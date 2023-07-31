@@ -67,7 +67,7 @@ const login=async(req,res)=>{
 
 const TokenVerification=async(req,res)=>{
   try {
-    res.status().send("true");
+    // res.status().send("true");
     res.json(true);
   } catch (error) {
     console.error(error.message);

@@ -9,7 +9,7 @@ module.exports = async(req,res,next)=>{
         }
 
         // Verify if the token is genuine
-        const payload=jwt.verify(jwtToken, process.env.jetSecret);
+        const payload=jwt.verify(jwtToken, process.env.jwtSecret);
         req.user.payload.user;
     } catch (error) {
         console.error(error.message);
