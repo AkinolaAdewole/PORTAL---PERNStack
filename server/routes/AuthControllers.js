@@ -65,8 +65,9 @@ const login=async(req,res)=>{
     }
 }
 
-const IsVerify=async(req,res)=>{
+const TokenVerification=async(req,res)=>{
   try {
+    res.status().send("true");
     res.json(true);
   } catch (error) {
     console.error(error.message);
@@ -74,5 +75,5 @@ const IsVerify=async(req,res)=>{
   }
 }
 
-module.exports = {register,login,IsVerify}; 
+module.exports = {register,login,TokenVerification}; 
 
