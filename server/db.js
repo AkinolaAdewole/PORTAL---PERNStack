@@ -1,8 +1,9 @@
-const Pool =require("pg").Pool
+import pkg from 'pg';
+
+const {Pool}=pkg;
 
 const pool= new Pool();
 
-// module.exports ={ query : (text, params) => pool.query(text, params)};
 
 pool.query('SELECT * FROM users', (err, result) => {
     if (err) {
@@ -12,4 +13,4 @@ pool.query('SELECT * FROM users', (err, result) => {
     }
   });
 
-  module.exports= pool
+  export default pool;

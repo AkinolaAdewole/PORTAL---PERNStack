@@ -1,4 +1,4 @@
-module.exports=(req,res,next)=>{
+const validInformation=(req,res,next)=>{
     const {email, name, password}=req.body;
 
     // Check if Email is valid
@@ -27,3 +27,5 @@ module.exports=(req,res,next)=>{
 
     next();
 }
+
+export default validInformation;

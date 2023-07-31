@@ -1,18 +1,20 @@
-const jwt =require("jsonwebtoken");
+import jwt from 'jsonwebtoken';
 
 
-module.exports = async(req,res,next)=>{
+const authorization = async(req,res,next)=>{
     try {
         const jwtToken = req.header("token");
         if(!jwtToken){
-            return res.status(403).json("You are authorised");
+            return res.status(403).json("You are not authorised");
         }
 
         // Verify if the token is genuine
         const payload=jwt.verify(jwtToken, process.env.jwtSecret);
-        req.user.payload.user;
+        req.user=payload.user;
     } catch (error) {
         console.error(error.message);
         return res.status(403).json("You are not authorised");
     }
 }
+
+export default authorization;

@@ -1,19 +1,23 @@
 // Load environment variables from .env file
-require('dotenv').config();
+import dotenv from 'dotenv';
+dotenv.config();
 
-const express = require("express");
-const cors = require("cors");
+import express from 'express'
+import cors from 'cors';
 const App = express();
 
 // Middleware
 App.use(express.json());
 App.use(cors());
-const validInformation = require("./middleware/validInformation");
-const authorization= require("./middleware/authorization");
+import validInformation from "./middleware/validInformation.js";
+import authorization from "./middleware/authorization.js"
 
 // Route for authentication
 // Import the registerUser function from authController.js
-const { register, login, TokenVerification} = require('./routes/AuthControllers.js');
+import { register, login, TokenVerification} from './routes/AuthControllers.js';
+
+// Import Dashboard 
+const Dashboard = require('./routes/Dashboard');
 
 
 
@@ -21,7 +25,12 @@ const { register, login, TokenVerification} = require('./routes/AuthControllers.
 // Route for user registration
 App.post('/register', validInformation, register);
 App.post('/login', validInformation, login);
+
+// Routes for token verification
 App.get('/tokenverification', authorization, TokenVerification);
+
+// Routes for Dashboard
+App.get('/dashboard', authorization,Dashboard);
 
 
 const port = 5018

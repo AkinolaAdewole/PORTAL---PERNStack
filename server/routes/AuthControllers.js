@@ -1,9 +1,9 @@
-const pool = require("../db");
-const bcrypt = require('bcrypt');
-const jwtGenerator = require('../utils/jwtGenerator');
+import pool from '../db.js'
+import bcrypt from 'bcrypt'
+import  jwtGenerator from '../utils/jwtGenerator.js';
 
 
-const register = async (req, res) => {
+export const register = async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
@@ -40,7 +40,7 @@ const register = async (req, res) => {
 }
 
 
-const login=async(req,res)=>{
+export const login=async(req,res)=>{
     try {
         // destructure req.body
         const {email,password}=req.body;
@@ -65,9 +65,8 @@ const login=async(req,res)=>{
     }
 }
 
-const TokenVerification=async(req,res)=>{
+export const TokenVerification=async(req,res)=>{
   try {
-    // res.status().send("true");
     res.json(true);
   } catch (error) {
     console.error(error.message);
@@ -75,5 +74,5 @@ const TokenVerification=async(req,res)=>{
   }
 }
 
-module.exports = {register,login,TokenVerification}; 
+
 
