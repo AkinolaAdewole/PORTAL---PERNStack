@@ -36,7 +36,7 @@ const Dashboard = ({setAuth}) => {
        <h1 className='mt-5'></h1>
        <h2>Welcome {name}</h2>
 
-            <button onClick={(e)=>logout(e)} className='btn btn-primary'>
+            <button onClick={()=>setAuth(false)} className='btn btn-primary'>
                 Logout
             </button>
     </>

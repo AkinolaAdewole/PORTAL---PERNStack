@@ -43,8 +43,11 @@ const Login = ({setAuth}) => {
     }
   return (
     <>
+       <div>
+        <button onClick={()=>setAuth(true)}>Auth</button>
+       </div>
     </>
   )
 }
 
-export default Login
+export default Login 

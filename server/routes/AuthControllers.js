@@ -20,8 +20,8 @@ export const register = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     const newUser = await executeQuery(
-      "INSERT INTO users (user_name, user_email, user_password) VALUES ($1, $2, $3) RETURNING user_id",
-      [name, email, hashedPassword]
+      "INSERT INTO users (user_firstname, user_lastname, user_email, user_password) VALUES ($1, $2, $3) RETURNING user_id",
+      [firstname, lastname, email, hashedPassword]
     );
 
     // Check if the insertion was successful and if user_id was returned
