@@ -14,6 +14,9 @@ const SignUp = () => {
         setInputs({...inputs, [e.target.name]:e.target.value});
     };
 
+    const submit =async(e)=>{
+        e.preventDefault();
+    }
 
   return (
     <>
@@ -21,16 +24,16 @@ const SignUp = () => {
        <div className="container">
         <form action="">
             <input type="text" className="form-control my-3" name='firstname' 
-            placeholder='Name' value={firstname} />
+            placeholder='Name' value={firstname} onChange={(e)=>onChange(e)} />
 
             <input type="text" className="form-control my-3" name='lastname' 
-            placeholder='Name' value={lastname}/> 
+            placeholder='Name' value={lastname} onChange={(e)=>onChange(e)}/> 
 
             <input type="email" className="form-control my-3" name='email' 
-            placeholder='Email' value={email}/>
+            placeholder='Email' value={email} onChange={(e)=>onChange(e)}/>
 
             <input type="password" className="form-control my-3" name='password' 
-            placeholder='Password' value={password}/>
+            placeholder='Password' value={password} onChange={(e)=>onChange(e)}/>
 
             <button className="btn btn-success btn-block">Submit</button>
         </form>
