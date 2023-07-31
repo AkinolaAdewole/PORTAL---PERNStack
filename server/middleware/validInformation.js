@@ -17,10 +17,13 @@ module.exports=(req,res,next)=>{
         }
 
     } else if(req.path === "/login"){
+        // email, name and password are  not empty during login
         if(![email,password].every(Boolean)){
-            return res.status().json("Missing credentials");
+            return res.status(401).json("Missing credentials");
         }  else if(!validEmail(email)){
-            return res.status().json("Invalid Email");
+            return res.status(401).json("Invalid Email");
         }
     }
+
+    next();
 }

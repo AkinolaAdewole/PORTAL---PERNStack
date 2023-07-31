@@ -2,6 +2,7 @@ const pool = require("../db");
 const bcrypt = require('bcrypt');
 const jwtGenerator = require('../utils/jwtGenerator');
 
+
 const register = async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -64,5 +65,14 @@ const login=async(req,res)=>{
     }
 }
 
-module.exports = {register,login}; 
+const IsVerify=async(req,res)=>{
+  try {
+    res.json(true);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json("Server Error");
+  }
+}
+
+module.exports = {register,login,IsVerify}; 
 
