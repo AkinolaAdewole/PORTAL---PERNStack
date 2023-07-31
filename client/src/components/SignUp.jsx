@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 
 const SignUp = ({setAuth}) => {
     const [inputs,setInputs]= useState({
@@ -66,10 +67,10 @@ const SignUp = ({setAuth}) => {
            <div className='col-9'>
                 <form action="" onSubmit={submit}>
                     <input type="text" className="form-control my-3" name='firstname' 
-                    placeholder='Name' value={firstname} onChange={(e)=>onChange(e)} />
+                    placeholder='Firstame' value={firstname} onChange={(e)=>onChange(e)} />
 
                     <input type="text" className="form-control my-3" name='lastname' 
-                    placeholder='Name' value={lastname} onChange={(e)=>onChange(e)}/> 
+                    placeholder='Lastname' value={lastname} onChange={(e)=>onChange(e)}/> 
 
                     <input type="email" className="form-control my-3" name='email' 
                     placeholder='Email' value={email} onChange={(e)=>onChange(e)}/>
@@ -79,6 +80,7 @@ const SignUp = ({setAuth}) => {
 
                     <button className="btn btn-success btn-block">Submit</button>
                 </form>
+                <Link>Login</Link>
            </div>
        </div>
     </>

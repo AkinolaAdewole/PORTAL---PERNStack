@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 const Login = ({setAuth}) => {
     const [inputs, setInputs]=useState({
@@ -17,26 +18,24 @@ const Login = ({setAuth}) => {
         e.preventDefault();
         try {
             const body={email,password};
+
             const response = await fetch(
-                "http://localhost:5018/login",
+                "http://localhost:5020/login",
                 {
                     method:"POST",
                     headers:{
-                        "content-type":"application/json"
+                        "Content-Type":"application/json"
                     },
                     body:JSON.stringify(body)
                 }
             );
 
             const parseRes=await response.json();
-            if(parseRes.jwtToken){
+            console.log(parseRes);
                 localStorage.setItem("token",parseRes.jwtToken);
                 setAuth(true);
                 toast.success("Logged in successfuly");
-            } else{
-                setAuth(false);
-                toast.error(parseRes);
-            }
+         
         } catch (err) {
             console.error(err);
         }
@@ -61,9 +60,10 @@ const Login = ({setAuth}) => {
                             onChange={(e)=>onChange(e)} 
                             />
 
-
-                        <button onClick={()=>setAuth(true)}>Auth</button>
+                        <button className='btn btn-success'>Login</button>
                     </form>
+
+                    <Link to='/'>Sign Up</Link>
                 </div>
             </div>
        </div>

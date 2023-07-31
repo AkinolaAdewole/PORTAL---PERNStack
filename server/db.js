@@ -9,7 +9,7 @@ const executeQuery = async (text, params) => {
     const result = await poolQuery.query(text, params);
 
     // Log the query result to the console (you may comment this line for production)
-    console.log('Query result:', result.rows);
+    // console.log('Query result:', result.rows);
 
     // Return the result object which includes the rows returned by the query and other metadata
     return result;

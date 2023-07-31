@@ -89,22 +89,24 @@ export const login = async (req, res) => {
     // Check if user exists
     console.log("Email being checked:", email);
     const user = await executeQuery("SELECT * FROM users WHERE user_email = $1", [email]);
-    console.log("Query Result:", user);
+    // console.log("Query Result:", user);
      
 
-    if (user.length !== 0) {
-      return res.status(401).json({ error: "User already exists" });
-    }
+    // if (user.rows.length !== 0) {
+    //   return res.status(401).json({ error: "User already exists" });
+    // }  
+ 
     // Check if incoming password is the same as in the database
-    const validPassword = await bcrypt.compare(password, user[0].user_password);
+    const validPassword = await bcrypt.compare(password, user.rows[0].user_password);
 
     if (!validPassword) {
-      return res.status(401).json({ error: "Password is incorrect" }); // Return an error JSON response
+      // Return an error JSON response
+      return res.status(401).json({ error: "Password is incorrect" }); 
     }
-
+    
     // Generate jwt token
-    const token = jwtGenerator(user[0].user_id);
-    console.log("Generated token:", token); // Log the generated token to the console
+    const token = jwtGenerator(user.rows[0].user_id);
+    // console.log("Generated token:", token);
     res.json({ token });
   } catch (error) {
     // Handle any other errors that might occur during the login process
