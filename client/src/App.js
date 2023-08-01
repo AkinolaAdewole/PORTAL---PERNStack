@@ -6,9 +6,12 @@ import { useState } from 'react';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  
   const setAuth=(boolean)=>{
     setIsAuthenticated(boolean);
   }
+
+  
 
   return (
     <div className='container'>
