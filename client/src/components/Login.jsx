@@ -44,7 +44,7 @@ const Login = ({setAuth}) => {
     <>
        <div>
             <div>
-                <div className='col-9'>
+                <div className='col-9 shadow-sm'>
                      <h2 className='text-center'>Login</h2>
                     <form action="" onSubmit={submitForm}>
                         <input type="text" name='email' 
