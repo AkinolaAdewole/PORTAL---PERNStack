@@ -33,31 +33,40 @@ const SignUp = ({setAuth}) => {
     // }
 
     const submit = async (e) => {
-        e.preventDefault();
-        try {
+      e.preventDefault();
+      try {
+          // Basic validation
+          if (!firstname || !lastname || !email || !password) {
+              toast.error("Please fill in all fields");
+              return;
+          }
+  
           const body = { firstname, lastname, email, password };
           const response = await fetch("http://localhost:5020/register", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(body),
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(body),
           });
-      
+  
           if (!response.ok) {
-            // Handle the case when the response status is not 2xx (e.g., 401, 500, etc.)
-            const errorMessage = await response.text();
-            console.error(`Error: ${response.status} - ${errorMessage}`);
+              // Handle the case when the response status is not 2xx (e.g., 400, 500, etc.)
+              const errorMessage = await response.text();
+              console.error(`Error: ${response.status} - ${errorMessage}`);
+              toast.error(errorMessage || "Registration failed. Please try again.");
           } else {
-            // Registration successful
-            const parseRes = await response.json();
-
-            localStorage.setItem("token",parseRes.token)
-            setAuth(true);
-            console.log(parseRes);
+              // Registration successful
+              const parseRes = await response.json();
+              localStorage.setItem("token", parseRes.token);
+              setAuth(true);
+              toast.success("Registration successful");
+              console.log(parseRes);
           }
-        } catch (err) {
+      } catch (err) {
           console.error(`Error: ${err.message}`);
-        }
-      };
+          toast.error("Server error. Please try again later.");
+      }
+  };
+  
       
 
   return (
