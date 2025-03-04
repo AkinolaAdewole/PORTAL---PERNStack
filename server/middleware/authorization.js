@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-const { jwtSecret } = process.env; // Destructure the jwtSecret from environment variables
+const { jwtSecret } = process.env.jwtSecret; // Destructure the jwtSecret from environment variables
 
 const authorization = async (req, res, next) => {
     try {
